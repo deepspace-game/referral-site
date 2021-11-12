@@ -33,9 +33,8 @@
 			totalPaid = referralList[i]["total_paid"];
 			totalPaidUSD = referralList[i]["total_paid_usd"];
 						  
-		  document.getElementById('referralList').innerHTML += "Wallet Address: <a href=\"https://bscscan.com/token/0xf275e1AC303a4C9D987a2c48b8E555A77FeC3F1C?a=" + walletAddress + "\">" + walletAddress + "</a><br>";
-			document.getElementById('referralList').innerHTML += "Referrals: " + walletTag + "<br>";
-			document.getElementById('referralList').innerHTML += "Wallet Owner: " + referrals + "<br>";
+		  	document.getElementById('referralList').innerHTML += "Wallet Address: <a href=\"https://bscscan.com/token/0xf275e1AC303a4C9D987a2c48b8E555A77FeC3F1C?a=" + walletAddress + "\">" + walletAddress + "</a><br>";
+			document.getElementById('referralList').innerHTML += "Referrals: " + referrals + "<br>";
 			document.getElementById('referralList').innerHTML += "Total Paid (DPS): " + largeFormatDecimal(totalPaid) + "<br>";
 			document.getElementById('referralList').innerHTML += "Total Paid (USD): $" + largeFormatDecimal(totalPaidUSD) + "<br>";
 			document.getElementById('referralList').innerHTML += "Wallet Balance (DPS): " + largeFormatDecimal(walletBalance) + "<br><br>";
