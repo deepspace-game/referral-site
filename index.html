@@ -1,0 +1,70 @@
+<html>
+<head>
+<title>DEEPSPACE (DPS) Referral Tracker Client</title>
+<meta http-equiv="Pragma" content="no-cache">
+<base target="_blank">
+
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<script>
+	let xhr = new XMLHttpRequest();
+	xhr.open('GET', "https://token.deepspace.game/referrals");
+	xhr.send();
+
+	var respond;
+	var lastUpdated = "";
+	var referralList = "";
+	
+	largeFormat = d3.format(",.0f");
+	largeFormatDecimal = d3.format(",.2f");
+	largeFormatPercentage = d3.format(",.4f");
+	
+	xhr.onreadystatechange = function() {
+		if (xhr.readyState === 4) {
+		  var data = xhr.response;
+		  tokenData = JSON.parse(data);
+		  console.log(tokenData);
+					
+		  referralList = tokenData["referral_list"];
+		  document.getElementById('referralList').innerHTML = "Referral List:<br><br>";
+
+		  for (let i = 0; i < referralList.length; i++) {
+		  	walletAddress = referralList[i]["address"];
+		  	referrals = referralList[i]["referrals"];
+			totalPaid = referralList[i]["total_paid"];
+			totalPaidUSD = referralList[i]["total_paid_usd"];
+						  
+		  document.getElementById('referralList').innerHTML += "Wallet Address: <a href=\"https://bscscan.com/token/0xf275e1AC303a4C9D987a2c48b8E555A77FeC3F1C?a=" + walletAddress + "\">" + walletAddress + "</a><br>";
+			document.getElementById('referralList').innerHTML += "Referrals: " + walletTag + "<br>";
+			document.getElementById('referralList').innerHTML += "Wallet Owner: " + referrals + "<br>";
+			document.getElementById('referralList').innerHTML += "Total Paid (DPS): " + largeFormatDecimal(totalPaid) + "<br>";
+			document.getElementById('referralList').innerHTML += "Total Paid (USD): $" + largeFormatDecimal(totalPaidUSD) + "<br>";
+			document.getElementById('referralList').innerHTML += "Wallet Balance (DPS): " + largeFormatDecimal(walletBalance) + "<br><br>";
+		  }
+			
+		  lastUpdated = tokenData["last_updated"];
+		  document.getElementById('lastUpdated').innerHTML = "Last Updated: " + lastUpdated;
+
+		}
+	}
+</script>
+</head>
+<body>
+<h1>DEEPSPACE (DPS) Referral Tracker Stats</h1>
+<h2>About DEEPSPACE</h2>
+<p><b>Welcome to the DEEPSPACE Metaverse!</b><br/>
+DEEPSPACE is a Play-to-Earn space multiverse exploration strategy game!<br/>
+Earn passive income from holding $DPS, trading NFTs, and taking risks as you explore DEEPSPACE with your fleet of ships!<br/>
+Prepare to explore, harvest, and fight your way through the DEEPSPACE universe!<br/>
+Learn more at: <a href="https://deepspace.game">https://deepspace.game</a><br/>
+Buy DEEPSPACE (DPS) at: <a href="https://app.deepspace.game">https://app.deepspace.game</a>
+</p>
+
+<p><i>Tip: Check the console log for the full JSON response from the token stat server</i></p>
+<p>Pro Tip: Command Supported: <a href="https://token.deepspace.game/referral/summary">https://token.deepspace.game/referral/summary</a></p>
+<p>Pro Tip: DEEPSPACE (DPS) Token API Endpoint: <a href="https://token.deepspace.game/api">https://token.deepspace.game/referral</a></p>
+<p>Pro Tip: OPEN SOURCE on GitHub: <a href="https://github.com/deepspace-game/referral-site">https://github.com/deepspace-game/referral-site</a></p>
+
+<br><div id="referralList">Referral List - N/A</div>
+<br><div id="lastUpdated">Last Updated: N/A</div>
+</body>
+</html>
