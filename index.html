@@ -44,18 +44,19 @@
 		build += "</tr>";
 
 		$('#referralList').append(build);
-			
+		s = 1;
 		  for (let i = 0; i < referralList.length; i++) {
 		  	walletAddress = referralList[i]["address"];
 		  	referrals = referralList[i]["referrals"];
 			
 			build = "<tr>";
-			build += "<td>" + i + "</td>";
+			build += "<td>" + s + "</td>";
 		  	build += "<td><a href=\"https://bscscan.com/token/0xf275e1AC303a4C9D987a2c48b8E555A77FeC3F1C?a=" + walletAddress + "\">" + walletAddress + "</a></td>";
 			build += "<td>" + referrals + "</td>";
 			build += "</tr>";
 			  
 			$('#referralList').append(build);
+			s++;
 		  }
 			
 		  lastUpdated = tokenData["last_updated"];
