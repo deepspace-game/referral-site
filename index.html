@@ -40,9 +40,12 @@
 		  for (let i = 0; i < referralList.length; i++) {
 		  	walletAddress = referralList[i]["address"];
 		  	referrals = referralList[i]["referrals"];
-						  
-		  	document.getElementById('referralList').innerHTML += "Wallet Address: <a href=\"https://bscscan.com/token/0xf275e1AC303a4C9D987a2c48b8E555A77FeC3F1C?a=" + walletAddress + "\">" + walletAddress + "</a><br>";
-			document.getElementById('referralList').innerHTML += "Referrals: " + referrals + "<br>";
+			
+			document.getElementById('referralList').innerHTML += "<tr>";
+			document.getElementById('referralList').innerHTML += "<td>" + i + "</td>";
+		  	document.getElementById('referralList').innerHTML += "<td><a href=\"https://bscscan.com/token/0xf275e1AC303a4C9D987a2c48b8E555A77FeC3F1C?a=" + walletAddress + "\">" + walletAddress + "</a></td>";
+			document.getElementById('referralList').innerHTML += "<td>" + referrals + "</td>";
+			document.getElementById('referralList').innerHTML += "</tr>";
 		  }
 			
 		  lastUpdated = tokenData["last_updated"];
@@ -72,7 +75,21 @@ Buy DEEPSPACE (DPS) at: <a href="https://app.deepspace.game">https://app.deepspa
 <p>Pro Tip: DEEPSPACE (DPS) Token API Endpoint: <a href="https://referrals.deepspace.game/api">https://referrals.deepspace.game/api</a></p>
 <p>Pro Tip: OPEN SOURCE on GitHub: <a href="https://github.com/deepspace-game/referral-site">https://github.com/deepspace-game/referral-site</a></p>
 
-<br><div id="referralList">Referral List - N/A</div>
+<table>
+<tr>
+	<th>Rank:</th>
+	<th>Wallet Address:</th>
+	<th>Referrals:</th>
+</tr>
+<div id="referralList">
+<tr>
+	<td>N/A</td>
+	<td>N/A</td>
+	<td>N/A</td>
+</tr>
+</div>
+</table>
+	
 <br><div id="lastUpdated">Last Updated: N/A</div>
 </body>
 </html>
