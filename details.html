@@ -1,0 +1,82 @@
+<html>
+<head>
+<title>DEEPSPACE (DPS) Referral Tracker Client - Detailed Stats</title>
+<meta http-equiv="Pragma" content="no-cache">
+<base target="_blank">
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Z1WFHR4JYQ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-Z1WFHR4JYQ');
+</script>
+	
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<script>
+	let xhr = new XMLHttpRequest();
+	xhr.open('GET', "https://referrals.deepspace.game/api");
+	xhr.send();
+
+	var respond;
+	var lastUpdated = "";
+	var referralList = "";
+	
+	largeFormat = d3.format(",.0f");
+	largeFormatDecimal = d3.format(",.2f");
+	largeFormatPercentage = d3.format(",.4f");
+	
+	xhr.onreadystatechange = function() {
+		if (xhr.readyState === 4) {
+		  var data = xhr.response;
+		  tokenData = JSON.parse(data);
+		  console.log(tokenData);
+					
+		  referralList = tokenData["referral_list"];
+		  document.getElementById('referralList').innerHTML = "Referral List:<br><br>";
+
+		  for (let i = 0; i < referralList.length; i++) {
+		  	walletAddress = referralList[i]["address"];
+		  	referrals = referralList[i]["referrals"];
+			totalPaid = referralList[i]["total_paid"];
+			totalPaidUSD = referralList[i]["total_paid_usd"];
+						  
+		  	document.getElementById('referralList').innerHTML += "Wallet Address: <a href=\"https://bscscan.com/token/0xf275e1AC303a4C9D987a2c48b8E555A77FeC3F1C?a=" + walletAddress + "\">" + walletAddress + "</a><br>";
+			document.getElementById('referralList').innerHTML += "Referrals: " + referrals + "<br>";
+			document.getElementById('referralList').innerHTML += "Total Paid (DPS): " + largeFormatDecimal(totalPaid) + "<br>";
+			document.getElementById('referralList').innerHTML += "Total Paid (USD): $" + largeFormatDecimal(totalPaidUSD) + "<br><br>";
+		  }
+			
+		  lastUpdated = tokenData["last_updated"];
+		  document.getElementById('lastUpdated').innerHTML = "Last Updated: " + lastUpdated;
+
+		}
+	}
+</script>
+</head>
+<body>
+<h1>DEEPSPACE (DPS) Referral Tracker Stats - Detailed Stats</h1>
+<h2>About DEEPSPACE</h2>
+<p><b>Welcome to the DEEPSPACE Metaverse!</b><br/>
+DEEPSPACE is a Play-to-Earn space multiverse exploration strategy game!<br/>
+Earn passive income from holding $DPS, trading NFTs, and taking risks as you explore DEEPSPACE with your fleet of ships!<br/>
+Prepare to explore, harvest, and fight your way through the DEEPSPACE universe!<br/>
+Learn more at: <a href="https://deepspace.game">https://deepspace.game</a><br/>
+Buy DEEPSPACE (DPS) at: <a href="https://app.deepspace.game">https://app.deepspace.game</a>
+</p>
+
+<p>Pro Tip: Don't have a referral wallet? Check out the docs here on getting one: <a href="https://docs.deepspace.game/swap-site/referral-bonus">https://docs.deepspace.game/swap-site/referral-bonus</a></p>
+	
+<p><i>Tip: Check the console log for the full JSON response from the token stat server</i></p>
+<p>Pro Tip: Leardboard Referral Stats located at: <a href="https://referrals.deepspace.game/">https://referrals.deepspace.game/</a></p>
+<p>Pro Tip: Detailed Referral Stats located at: <a href="https://referrals.deepspace.game/detailed">https://referrals.deepspace.game/detailed</a></p>
+<p>Pro Tip: Command Supported: <a href="https://referrals.deepspace.game/api/summary">https://referrals.deepspace.game/api/summary</a></p>
+<p>Pro Tip: DEEPSPACE (DPS) Token API Endpoint: <a href="https://referrals.deepspace.game/api">https://referrals.deepspace.game/api</a></p>
+<p>Pro Tip: OPEN SOURCE on GitHub: <a href="https://github.com/deepspace-game/referral-site">https://github.com/deepspace-game/referral-site</a></p>
+
+<br><div id="referralList">Referral List - N/A</div>
+<br><div id="lastUpdated">Last Updated: N/A</div>
+</body>
+</html>
