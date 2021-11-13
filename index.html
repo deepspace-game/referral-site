@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>DEEPSPACE (DPS) Referral Tracker Client</title>
+<title>DEEPSPACE (DPS) Referral Tracker Client - Leaderboard Stats</title>
 <meta http-equiv="Pragma" content="no-cache">
 <base target="_blank">
 
@@ -17,7 +17,7 @@
 <script src="https://d3js.org/d3.v7.min.js"></script>
 <script>
 	let xhr = new XMLHttpRequest();
-	xhr.open('GET', "https://token.deepspace.game/referrals");
+	xhr.open('GET', "https://referrals.deepspace.game/api/summary");
 	xhr.send();
 
 	var respond;
@@ -40,13 +40,9 @@
 		  for (let i = 0; i < referralList.length; i++) {
 		  	walletAddress = referralList[i]["address"];
 		  	referrals = referralList[i]["referrals"];
-			totalPaid = referralList[i]["total_paid"];
-			totalPaidUSD = referralList[i]["total_paid_usd"];
 						  
 		  	document.getElementById('referralList').innerHTML += "Wallet Address: <a href=\"https://bscscan.com/token/0xf275e1AC303a4C9D987a2c48b8E555A77FeC3F1C?a=" + walletAddress + "\">" + walletAddress + "</a><br>";
 			document.getElementById('referralList').innerHTML += "Referrals: " + referrals + "<br>";
-			document.getElementById('referralList').innerHTML += "Total Paid (DPS): " + largeFormatDecimal(totalPaid) + "<br>";
-			document.getElementById('referralList').innerHTML += "Total Paid (USD): $" + largeFormatDecimal(totalPaidUSD) + "<br><br>";
 		  }
 			
 		  lastUpdated = tokenData["last_updated"];
@@ -57,7 +53,7 @@
 </script>
 </head>
 <body>
-<h1>DEEPSPACE (DPS) Referral Tracker Stats</h1>
+<h1>DEEPSPACE (DPS) Referral Tracker Stats - Leaderboard Stats</h1>
 <h2>About DEEPSPACE</h2>
 <p><b>Welcome to the DEEPSPACE Metaverse!</b><br/>
 DEEPSPACE is a Play-to-Earn space multiverse exploration strategy game!<br/>
@@ -70,8 +66,10 @@ Buy DEEPSPACE (DPS) at: <a href="https://app.deepspace.game">https://app.deepspa
 <p>Pro Tip: Don't have a referral wallet? Check out the docs here on getting one: <a href="https://docs.deepspace.game/swap-site/referral-bonus">https://docs.deepspace.game/swap-site/referral-bonus</a></p>
 	
 <p><i>Tip: Check the console log for the full JSON response from the token stat server</i></p>
-<p>Pro Tip: Command Supported: <a href="https://token.deepspace.game/referral/summary">https://token.deepspace.game/referral/summary</a></p>
-<p>Pro Tip: DEEPSPACE (DPS) Token API Endpoint: <a href="https://token.deepspace.game/api">https://token.deepspace.game/referral</a></p>
+<p>Pro Tip: Leardboard Referral Stats located at: <a href="https://referrals.deepspace.game/">https://referrals.deepspace.game/</a></p>
+<p>Pro Tip: Detailed Referral Stats located at: <a href="https://referrals.deepspace.game/details">https://referrals.deepspace.game/details</a></p>
+<p>Pro Tip: Command Supported: <a href="https://referrals.deepspace.game/api/summary">https://referrals.deepspace.game/api/summary</a></p>
+<p>Pro Tip: DEEPSPACE (DPS) Token API Endpoint: <a href="https://referrals.deepspace.game/api">https://referrals.deepspace.game/api</a></p>
 <p>Pro Tip: OPEN SOURCE on GitHub: <a href="https://github.com/deepspace-game/referral-site">https://github.com/deepspace-game/referral-site</a></p>
 
 <br><div id="referralList">Referral List - N/A</div>
